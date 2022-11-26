@@ -6,12 +6,13 @@
 class Enemy {
 	public:
 		int x, y, speed, radius;
-		int ox, oy, od, pdir;
+		int ox, oy, od;
+		int direction, distance;
 		bool reachedEndPoint;
 		void renderEnemy();
-		void logic(int direction, int distance);
+		void logic();
 
-		Enemy(int x, int y, int speed, int radius);
+		Enemy(int x, int y, int speed, int radius, int direction, int distance);
 };
 
 #endif

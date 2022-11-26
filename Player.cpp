@@ -2,6 +2,7 @@
 #include "Player.hpp"
 
 #include <gl/glut.h>
+//#include <gl/freeglut.h>
 #include <math.h>
 #include <windows.h>
 
@@ -10,13 +11,14 @@ Player::Player(int x, int y, int speed, int size) {
 	this->y = y;
 	this->speed = speed;
 	this->size = size;
+	this->deathcount = 0;
 }
 
 void Player::renderPlayer() {
 
 	//Lines
 	glBegin(GL_QUADS);
-	glColor3f(0, 0, 0);
+	glColor3f(0.0f, 0.0f, 0.0f);
 	glVertex2f((x - size) - (size / 4), (y + size) + (size / 4));
 	glVertex2f((x - size) - (size / 4), (y - size) - (size / 4));
 	glVertex2f((x + size) + (size / 4), (y - size) - (size / 4));
@@ -25,7 +27,7 @@ void Player::renderPlayer() {
 
 	//Square
 	glBegin(GL_QUADS);
-	glColor3f(0, 1, 0);
+	glColor3f(0.0f, 1.0f, 0.0f);
 	glVertex2f(x - size, y + size);
 	glVertex2f(x - size, y - size);
 	glVertex2f(x + size, y - size);

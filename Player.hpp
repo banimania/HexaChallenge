@@ -5,7 +5,7 @@
 
 class Player {
 	public:
-		int x, y, speed, size;
+		int x, y, speed, size, deathcount;
 		void renderPlayer();
 		void handleMovement();
 		bool isCollidingWithEnemy(int x, int y, int radius);

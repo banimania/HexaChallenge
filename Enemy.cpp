@@ -2,8 +2,9 @@
 
 #include <math.h>
 #include <gl/glut.h>
+//#include <gl/freeglut.h>
 
-Enemy::Enemy(int x, int y, int speed, int radius) {
+Enemy::Enemy(int x, int y, int speed, int radius, int direction, int distance) {
 	this->x = x;
 	this->y = y;
 	this->speed = speed;
@@ -11,8 +12,9 @@ Enemy::Enemy(int x, int y, int speed, int radius) {
 	
 	this->ox = x;
 	this->oy = y;
-	this->od = -1;
-	this->pdir = -1;
+	this->od = direction;
+	this->direction = direction;
+	this->distance = distance;
 	this->reachedEndPoint = false;
 }
 
@@ -57,19 +59,15 @@ void Enemy::renderEnemy() {
 	glEnd();*/
 }
 
-void Enemy::logic(int direction, int distance) {
-	if (od == -1) {
-		od = direction;
-		pdir = direction;
-	}
+void Enemy::logic() {
 
-	if (pdir == 0) {
+	if (direction == 0) {
 		if (ox - distance <= x - speed) {
 			x -= speed;
 		} else {
 			reachedEndPoint = true;
 		}
-	} else if (pdir == 1) {
+	} else if (direction == 1) {
 		if (ox + distance >= x + speed) {
 			x += speed;
 		} else {
@@ -78,7 +76,7 @@ void Enemy::logic(int direction, int distance) {
 	}
 
 	if (reachedEndPoint) {
-		pdir == 1 ? pdir = 0 : pdir = 1;
+		direction == 1 ? direction = 0 : direction = 1;
 		reachedEndPoint = false;
 	}
 	

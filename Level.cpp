@@ -1,13 +1,17 @@
 #include "Level.hpp"
+#include "main.hpp"
 
 #include <gl/glut.h>
+//#include <gl/freeglut.h>
 
 using namespace std;
 
-Level::Level(int startX, int startY, vector<Enemy> enemies) {
+Level::Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals) {
+    this->index = index;
 	this->startX = startX;
 	this->startY = startY;
 	this->enemies = enemies;
+    this->goals = goals;
 }
 
 void Level::start(Player& player) {
@@ -17,13 +21,23 @@ void Level::start(Player& player) {
 
 void Level::logic(Player player) {
     for (Enemy& enemy : enemies) {
-        enemy.logic(0, 40);
+        enemy.logic();
         if (player.isCollidingWithEnemy(enemy.x, enemy.y, enemy.radius)) {
-            glFlush();
-            exit(0);
+            game.restartFromLevel(index);
+            //glFlush();
+            //exit(0);
         }
         enemy.renderEnemy();
     }
+
+    for (Goal goal : goals) {
+        goal.logicGoal(player);
+        goal.render();
+    }
+}
+
+void Level::finish() {
+
 }
 
 void Level::renderBackground() {
