@@ -2,16 +2,16 @@
 #include "main.hpp"
 
 #include <gl/glut.h>
-#include <iostream>
 
 using namespace std;
 
-Level::Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals) {
+Level::Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals, vector<Wall> walls) {
     this->index = index;
 	this->startX = startX;
 	this->startY = startY;
 	this->enemies = enemies;
     this->goals = goals;
+    this->walls = walls;
 }
 
 void Level::start(Player& player) {
@@ -33,6 +33,10 @@ void Level::logic(Player player) {
     for (Goal& goal : goals) {
         goal.logicGoal(player);
         goal.render();
+    }
+
+    for (Wall wall : walls) {
+        wall.render();
     }
 }
 

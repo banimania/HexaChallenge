@@ -17,11 +17,12 @@ class Level {
 		int startX, startY;
 		vector<Enemy> enemies;
 		vector<Goal> goals;
+		vector<Wall> walls;
 		void start(Player& player);
 		void logic(Player player);
 		void renderBackground();
 
-		Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals);
+		Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals, vector<Wall> walls);
 };
 
 #endif

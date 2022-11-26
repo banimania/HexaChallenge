@@ -3,6 +3,7 @@
 #include "Player.hpp"
 #include "Enemy.hpp"
 #include "Level.hpp"
+#include "Wall.hpp"
 
 #include <vector>
 #include <string>
@@ -14,7 +15,7 @@ using namespace std;
 
 Player player = Player(100, 100, 1, 4);
 
-Level actualLevel = Level(420, 100, 100, {}, {});
+Level actualLevel = Level(420, 100, 100, {}, {}, {});
 
 int eTime;
 string secondsToTimeFormat(int seconds);
@@ -69,7 +70,7 @@ void render() {
 
 	actualLevel.logic(player);
 
-    player.handleMovement();
+    player.handleMovement(actualLevel.walls);
     player.renderPlayer();
 
     glFlush();
@@ -84,6 +85,7 @@ void idle() {
 }
 
 void renderInfo() {
+	glLineWidth(3.0f);
 	//Black bar
 	glBegin(GL_QUADS);
 	glColor3f(0.0f, 0.0f, 0.0f);
@@ -125,6 +127,7 @@ void renderInfo() {
 		glutStrokeCharacter(GLUT_STROKE_ROMAN, elapsedTime[i]);
 	}
 	glPopMatrix();
+	glLineWidth(1.0f);
 }
 
 string secondsToTimeFormat(int seconds) {

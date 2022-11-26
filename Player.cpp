@@ -2,9 +2,9 @@
 #include "Player.hpp"
 
 #include <gl/glut.h>
-//#include <gl/freeglut.h>
 #include <math.h>
 #include <windows.h>
+#include <iostream>
 
 Player::Player(int x, int y, int speed, int size) {
 	this->x = x;
@@ -36,24 +36,53 @@ void Player::renderPlayer() {
 	
 }
 
-void Player::handleMovement() {
-
-	/*cout << GetCurrentProcessId() << endl;
-	cout << "T: " << GetWindowThreadProcessId(GetForegroundWindow(), NULL) << endl;*/
+void Player::handleMovement(vector<Wall> walls) {
+	bool isGonnaCollideOnX = false;
+	bool isGonnaCollideOnY = false;
+	int xchange = 0;
+	int ychange = 0;
 	if (GetAsyncKeyState('W')) {
-		y -= speed;
+		ychange -= speed;
 	}
 
 	if (GetAsyncKeyState('S')) {
-		y += speed;
+		ychange += speed;
 	}
 
 	if (GetAsyncKeyState('A')) {
-		x -= speed;
+		xchange -= speed;
 	}
 
 	if (GetAsyncKeyState('D')) {
-		x += speed;
+		xchange += speed;
+	}
+
+	for (Wall wall : walls) {
+		int newx = x + xchange;
+		int newy = y + ychange;
+		int xlength, ylength;
+		switch (wall.direction) {
+			case 1:
+				xlength = 5;
+				ylength = wall.length;
+				break;
+			case 2:
+				xlength = wall.length;
+				ylength = 5;
+		}
+		if (x + newx >= wall.x and newx <= wall.x + size + xlength) {
+			if (x + newy >= wall.y and newy <= wall.y + size + ylength) {
+				cout << "test" << endl;
+			}
+		}
+	}
+
+	if (!isGonnaCollideOnX) {
+		x += xchange;
+	}
+
+	if (!isGonnaCollideOnY) {
+		y += ychange;
 	}
 }
 
