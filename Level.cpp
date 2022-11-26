@@ -36,10 +36,6 @@ void Level::logic(Player player) {
     }
 }
 
-void Level::finish() {
-    index++;
-}
-
 void Level::renderBackground() {
     int sq_size = 10;
     int count = 0;

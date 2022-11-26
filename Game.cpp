@@ -45,11 +45,15 @@ bool Game::init(int argc, char** argv) {
 }
 
 void Game::restartFromLevel(int levelIndex, bool withDeath) {
-	game.levelManager.getLevelFromId(levelIndex).start(player);
 	game.currentLevel = levelIndex;
 	if (withDeath) {
 		player.deathcount++;
+	} else {
+		cout << "finish";
+		actualLevel = game.levelManager.getLevelFromId(levelIndex);
 	}
+
+	actualLevel.start(player);
 }
 
 void render() {

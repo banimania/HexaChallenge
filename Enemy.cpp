@@ -64,8 +64,6 @@ void Enemy::renderEnemy() {
 
 void Enemy::logic() {
 
-	cout << speed << endl;
-
 	if (direction == 0) {
 		if (ox - distance <= x - speed) {
 			x -= speed;
@@ -78,10 +76,27 @@ void Enemy::logic() {
 		} else {
 			reachedEndPoint = true;
 		}
+	} else if (direction == 2) {
+		if (oy - distance <= y - speed) {
+			y -= speed;
+		} else {
+			reachedEndPoint = true;
+		}
+	} else if (direction == 3) {
+		if (oy + distance >= y + speed) {
+			y += speed;
+		} else {
+			reachedEndPoint = true;
+		}
 	}
 
 	if (reachedEndPoint) {
-		direction == 1 ? direction = 0 : direction = 1;
+		if (direction == 0 || direction == 1) {
+			direction == 1 ? direction = 0 : direction = 1;
+		} else if (direction == 2 || direction == 3) {
+			direction == 2 ? direction = 3 : direction = 2;
+		}
+		
 		reachedEndPoint = false;
 	}
 	

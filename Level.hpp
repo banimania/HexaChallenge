@@ -20,7 +20,6 @@ class Level {
 		void start(Player& player);
 		void logic(Player player);
 		void renderBackground();
-		void finish();
 
 		Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals);
 };
