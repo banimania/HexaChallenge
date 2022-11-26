@@ -6,17 +6,15 @@
 
 #include <vector>
 #include <string>
-#include <iostream>
 #include <gl/glut.h>
-//#include <gl/freeglut.h>
 #include <windows.h> 
+#include <iostream>
 
 using namespace std;
 
 Player player = Player(100, 100, 1, 4);
-Level level = Level(1, 100, 30,
-	{ Enemy(100, 50, 2, 5, 1, 40) , Enemy(100, 60, 2, 5, 0, 40) , Enemy(100, 70, 2, 5, 1, 40) , Enemy(100, 80, 2, 5, 0, 40) },
-	{ Goal(85, 85, 30, 30, true) });
+
+Level actualLevel = Level(420, 100, 100, {}, {});
 
 int eTime;
 string secondsToTimeFormat(int seconds);
@@ -33,7 +31,11 @@ bool Game::init(int argc, char** argv) {
 	glutDisplayFunc(render);
 	glutIdleFunc(idle);
 	
-    level.start(player);
+	game.levelManager.initLevelManager();
+
+	game.currentLevel = 1;
+	actualLevel = game.levelManager.getLevelFromId(1);
+	actualLevel.start(player);
 
 	cout << "Init successful in " << glutGet(GLUT_ELAPSED_TIME) << "ms!";
 
@@ -42,9 +44,12 @@ bool Game::init(int argc, char** argv) {
 	return true;
 }
 
-void Game::restartFromLevel(int levelIndex) {
-	level.start(player);
-	player.deathcount++;
+void Game::restartFromLevel(int levelIndex, bool withDeath) {
+	game.levelManager.getLevelFromId(levelIndex).start(player);
+	game.currentLevel = levelIndex;
+	if (withDeath) {
+		player.deathcount++;
+	}
 }
 
 void render() {
@@ -55,10 +60,10 @@ void render() {
     glLoadIdentity();
     gluOrtho2D(0.0, 200.0, 200.0, 0.0);
 
-	level.renderBackground();
+	actualLevel.renderBackground();
 	renderInfo();
 
-    level.logic(player);
+	actualLevel.logic(player);
 
     player.handleMovement();
     player.renderPlayer();
@@ -85,7 +90,7 @@ void renderInfo() {
 	glEnd();
 
 	//LEVEL COUNT
-	string levelText = "Level:" + to_string(level.index);
+	string levelText = "Level:" + to_string(game.currentLevel);
 	glPushMatrix();
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glTranslatef(10.0f, 10.0f, 0.0f);

@@ -131,6 +131,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
@@ -139,6 +140,7 @@
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Goal.hpp" />
     <ClInclude Include="Level.hpp" />
+    <ClInclude Include="LevelManager.hpp" />
     <ClInclude Include="main.hpp" />
     <ClInclude Include="Player.hpp" />
   </ItemGroup>

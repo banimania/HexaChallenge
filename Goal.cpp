@@ -1,4 +1,5 @@
 #include "Goal.hpp"
+#include "main.hpp"
 
 #include <gl/glut.h>
 #include <math.h>
@@ -6,12 +7,13 @@
 
 using namespace std;
 
-Goal::Goal(int x, int y, int width, int height, bool isGoal) {
+Goal::Goal(int x, int y, int width, int height, bool isGoal, int lIndex) {
 	this->x = x;
 	this->y = y;
 	this->width = width;
 	this->height = height;
 	this->isGoal = isGoal;
+	this->lIndex = lIndex;
 }
 
 void Goal::render() {
@@ -28,6 +30,6 @@ void Goal::logicGoal(Player player) {
 	//Collision checks
 	if (player.x + player.size > x && player.x - player.size < x + width
 		&& player.y + player.size > y && player.y - player.size < y + height) {
-		cout << "COLLISION" << endl;
+		game.restartFromLevel(lIndex + 1, false);
 	}
 }

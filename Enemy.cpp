@@ -2,7 +2,9 @@
 
 #include <math.h>
 #include <gl/glut.h>
-//#include <gl/freeglut.h>
+#include <iostream>
+
+using namespace std;
 
 Enemy::Enemy(int x, int y, int speed, int radius, int direction, int distance) {
 	this->x = x;
@@ -32,6 +34,7 @@ void Enemy::renderEnemy() {
 		glVertex2f(x, y);
 
 		glEnd();
+
 	}
 
 	//Circle
@@ -60,6 +63,8 @@ void Enemy::renderEnemy() {
 }
 
 void Enemy::logic() {
+
+	cout << speed << endl;
 
 	if (direction == 0) {
 		if (ox - distance <= x - speed) {

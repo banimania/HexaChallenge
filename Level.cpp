@@ -2,7 +2,7 @@
 #include "main.hpp"
 
 #include <gl/glut.h>
-//#include <gl/freeglut.h>
+#include <iostream>
 
 using namespace std;
 
@@ -23,21 +23,21 @@ void Level::logic(Player player) {
     for (Enemy& enemy : enemies) {
         enemy.logic();
         if (player.isCollidingWithEnemy(enemy.x, enemy.y, enemy.radius)) {
-            game.restartFromLevel(index);
+            game.restartFromLevel(index, true);
             //glFlush();
             //exit(0);
         }
         enemy.renderEnemy();
     }
 
-    for (Goal goal : goals) {
+    for (Goal& goal : goals) {
         goal.logicGoal(player);
         goal.render();
     }
 }
 
 void Level::finish() {
-
+    index++;
 }
 
 void Level::renderBackground() {
