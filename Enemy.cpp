@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Enemy::Enemy(int x, int y, float speed, int radius, int direction, int distance) {
+Enemy::Enemy(float x, float y, float speed, int radius, int direction, int distance) {
 	this->x = x;
 	this->y = y;
 	this->speed = speed;
@@ -95,6 +95,13 @@ void Enemy::logic() {
 		x = ox + distance * cos(i);
 		y = oy +  distance * sin(i);
 		i += speed;
+	} else if (direction == 5) { //CIRCULAR
+		if (i < -360) {
+			i = 0;
+		}
+		x = ox + distance * cos(i);
+		y = oy + distance * sin(i);
+		i -= speed;
 	}
 
 	if (reachedEndPoint) {

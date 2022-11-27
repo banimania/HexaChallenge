@@ -19,16 +19,12 @@ Level::Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Go
 void Level::start(Player& player) {
 	player.x = startX;
 	player.y = startY;
+    for (Coin& coin : coins) {
+        coin.obtained = false;
+    }
 }
 
 void Level::logic(Player player) {
-    for (Enemy& enemy : enemies) {
-        enemy.logic();
-        if (player.isCollidingWithEnemy(enemy.x, enemy.y, enemy.radius)) {
-            game.restartFromLevel(index, true);
-        }
-        enemy.renderEnemy();
-    }
 
     bool allCoins = true;
     for (Coin& coin : coins) {
@@ -37,6 +33,14 @@ void Level::logic(Player player) {
         }
         coin.logicCoin(player);
         coin.render();
+    }
+
+    for (Enemy& enemy : enemies) {
+        enemy.logic();
+        if (player.isCollidingWithEnemy(enemy.x, enemy.y, enemy.radius)) {
+            game.restartFromLevel(index, true);
+        }
+        enemy.renderEnemy();
     }
 
     for (Goal& goal : goals) {

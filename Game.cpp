@@ -35,7 +35,7 @@ bool Game::init(int argc, char** argv) {
 	game.levelManager.initLevelManager();
 
 	game.currentLevel = 1;
-	actualLevel = game.levelManager.getLevelFromId(1);
+	actualLevel = game.levelManager.getLevelFromId(game.currentLevel);
 	actualLevel.start(player);
 
 	cout << "Init successful in " << glutGet(GLUT_ELAPSED_TIME) << "ms!";
@@ -49,9 +49,6 @@ void Game::restartFromLevel(int levelIndex, bool withDeath) {
 	game.currentLevel = levelIndex;
 	if (withDeath) {
 		player.deathcount++;
-		for (Coin& coin : actualLevel.coins) {
-			coin.obtained = false;
-		}
 	} else {
 		actualLevel = game.levelManager.getLevelFromId(levelIndex);
 	}

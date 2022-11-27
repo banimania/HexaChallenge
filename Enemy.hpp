@@ -5,7 +5,8 @@
 
 class Enemy {
 	public:
-		int x, y, radius;
+		float x, y;
+		int radius;
 		int ox, oy, od;
 		float speed, i;
 		int direction, distance;
@@ -13,7 +14,7 @@ class Enemy {
 		void renderEnemy();
 		void logic();
 
-		Enemy(int x, int y, float speed, int radius, int direction, int distance);
+		Enemy(float x, float y, float speed, int radius, int direction, int distance);
 };
 
 #endif
