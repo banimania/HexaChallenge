@@ -3,7 +3,7 @@
 #include "Player.hpp"
 #include "Enemy.hpp"
 #include "Level.hpp"
-#include "Wall.hpp"
+#include "Background.hpp"
 
 #include <vector>
 #include <string>
@@ -15,7 +15,7 @@ using namespace std;
 
 Player player = Player(100, 100, 1, 4);
 
-Level actualLevel = Level(420, 100, 100, {}, {}, {});
+Level actualLevel = Level(420, 100, 100, {}, {}, {}, {});
 
 int eTime;
 string secondsToTimeFormat(int seconds);
@@ -50,7 +50,6 @@ void Game::restartFromLevel(int levelIndex, bool withDeath) {
 	if (withDeath) {
 		player.deathcount++;
 	} else {
-		cout << "finish";
 		actualLevel = game.levelManager.getLevelFromId(levelIndex);
 	}
 

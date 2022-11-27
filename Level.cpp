@@ -5,13 +5,14 @@
 
 using namespace std;
 
-Level::Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals, vector<Wall> walls) {
+Level::Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals, vector<Wall> walls, vector<Background> backgrounds) {
     this->index = index;
 	this->startX = startX;
 	this->startY = startY;
 	this->enemies = enemies;
     this->goals = goals;
     this->walls = walls;
+    this->backgrounds = backgrounds;
 }
 
 void Level::start(Player& player) {
@@ -24,8 +25,6 @@ void Level::logic(Player player) {
         enemy.logic();
         if (player.isCollidingWithEnemy(enemy.x, enemy.y, enemy.radius)) {
             game.restartFromLevel(index, true);
-            //glFlush();
-            //exit(0);
         }
         enemy.renderEnemy();
     }
@@ -55,5 +54,10 @@ void Level::renderBackground() {
             glEnd();
 
         }
+    }
+
+    //render backgrounds
+    for (Background background : backgrounds) {
+        background.render();
     }
 }

@@ -10,23 +10,25 @@ Level LevelManager::getLevelFromId(int id) {
 		}
 	}
 
-	return Level(420, 100, 100, {}, {}, {});
+	return Level(420, 100, 100, {}, {}, {}, {});
 }
 
 void LevelManager::initLevelManager() {
 	Level level1 = Level(1, 100, 40,
-		{ Enemy(100, 60, 1, 4.5f, 1, 0) , Enemy(100, 70, 1, 4.5f, 0, 0) , Enemy(100, 80, 1, 4.5f, 1, 0) , Enemy(100, 90, 1, 4.5f, 0, 0), 
-		Enemy(100, 100, 1, 4.5f, 1, 0) , Enemy(100, 110, 1, 4.5f, 0, 0) , Enemy(100, 120, 1, 4.5f, 1, 0) , Enemy(100, 130, 1, 4.5f, 0, 0),
-		Enemy(100, 140, 1, 4.5f, 1, 0) , Enemy(100, 150, 1, 4.5f, 0, 0) },
+		{ Enemy(100, 60, 1, 4.5f, 1, 40) , Enemy(100, 70, 1, 4.5f, 0, 40) , Enemy(100, 80, 1, 4.5f, 1, 40) , Enemy(100, 90, 1, 4.5f, 0, 40), 
+		Enemy(100, 100, 1, 4.5f, 1, 40) , Enemy(100, 110, 1, 4.5f, 0, 40) , Enemy(100, 120, 1, 4.5f, 1, 40) , Enemy(100, 130, 1, 4.5f, 0, 40),
+		Enemy(100, 140, 1, 4.5f, 1, 40) , Enemy(100, 150, 1, 4.5f, 0, 40) },
 		{ Goal(85, 155, 30, 30, true, 1) },
-		{ Wall(55, 55, 100, 1) , Wall(145, 55, 100, 1) , Wall(85, 25, 30, 2) , Wall(55, 55, 30, 2) , Wall(115, 55, 30, 2) , Wall(55, 155, 30, 2) ,
-		Wall(115, 155, 30, 2) , Wall(85, 25, 30, 1) , Wall(115, 25, 30, 1) ,
-		Wall(85, 155, 30, 1), Wall(115, 155, 30, 1) , Wall(85, 185, 30, 2) });
+		{ Wall(55, 55, 100, 1) , Wall(145, 54, 101, 1) , Wall(85, 25, 30, 2) , Wall(55, 54, 31, 2) , Wall(115, 54, 30, 2) , Wall(55, 155, 30, 2) ,
+		Wall(115, 155, 31, 2) , Wall(85, 25, 30, 1) , Wall(115, 25, 30, 1) ,
+		Wall(84, 155, 30, 1), Wall(115, 155, 30, 1) , Wall(84, 185, 32, 2) },
+		{Background(0, 0, 55, 200) , Background(55, 0, 30, 55), Background(0, 0, 200, 25) , Background(0, 185, 200, 25) , Background(55, 155, 30, 30) ,
+		Background(115, 25, 30, 30) , Background(115, 155, 30, 30) , Background(145, 0, 55, 200) });
 
 	Level level2 = Level(2, 20, 70,
 		{ Enemy(60, 70, 1, 5, 2, 20) },
 		{ Goal(85, 85, 30, 30, true, 1) },
-		{});
+		{}, {});
 
 	levelList.push_back(level1);
 	levelList.push_back(level2);
