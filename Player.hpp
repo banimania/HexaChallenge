@@ -16,7 +16,7 @@ class Player {
 		void handleMovement(vector<Wall> walls);
 		bool isCollidingWithEnemy(int x, int y, int radius);
 
-		Player(int x, int y, int speed, int size);
+		Player(int x, int y, int speed, float size);
 };
 
 #endif

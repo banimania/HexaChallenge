@@ -6,7 +6,7 @@
 #include <windows.h>
 #include <iostream>
 
-Player::Player(int x, int y, int speed, int size) {
+Player::Player(int x, int y, int speed, float size) {
 	this->x = x;
 	this->y = y;
 	this->speed = speed;
@@ -19,10 +19,10 @@ void Player::renderPlayer() {
 	//Lines
 	glBegin(GL_QUADS);
 	glColor3f(0.0f, 0.0f, 0.0f);
-	glVertex2f((x - size) - (size / 4), (y + size) + (size / 4));
-	glVertex2f((x - size) - (size / 4), (y - size) - (size / 4));
-	glVertex2f((x + size) + (size / 4), (y - size) - (size / 4));
-	glVertex2f((x + size) + (size / 4), (y + size) + (size / 4));
+	glVertex2f((x - size) - 1, (y + size) + 1);
+	glVertex2f((x - size) - 1, (y - size) - 1);
+	glVertex2f((x + size) + 1, (y - size) - 1);
+	glVertex2f((x + size) + 1, (y + size) + 1);
 	glEnd();
 
 	//Square

@@ -13,7 +13,7 @@
 
 using namespace std;
 
-Player player = Player(100, 100, 1, 4);
+Player player = Player(100, 100, 1, 3.5f);
 
 Level actualLevel = Level(420, 100, 100, {}, {}, {}, {}, {});
 

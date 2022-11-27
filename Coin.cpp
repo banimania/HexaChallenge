@@ -47,8 +47,8 @@ void Coin::render() {
 
 void Coin::logicCoin(Player player) {
 	//Collision checks
-	if (player.x + player.size > x && player.x - player.size < x + 8
-		&& player.y + player.size > y && player.y - player.size < y + 8) {
+	float d = sqrt(pow(player.x - x, 2) + pow(player.y - y, 2));
+	if (d - 4 < player.size) {
 		obtained = true;
 	}
 }
