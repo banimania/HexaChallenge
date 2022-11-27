@@ -6,6 +6,7 @@
 class Wall {
 public:
 	int x, y, length, direction;
+	int x2, y2;
 
 	void render();
 	Wall(int x, int y, int length, int direction);
