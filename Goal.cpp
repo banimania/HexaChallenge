@@ -25,10 +25,11 @@ void Goal::render() {
 	glEnd();
 }
 
-void Goal::logicGoal(Player player) {
+void Goal::logicGoal(Player player, bool allCoins) {
 	//Collision checks
 	if (player.x + player.size > x && player.x - player.size < x + width
-		&& player.y + player.size > y && player.y - player.size < y + height) {
+		&& player.y + player.size > y && player.y - player.size < y + height
+		&& allCoins) {
 		game.restartFromLevel(lIndex + 1, false);
 	}
 }

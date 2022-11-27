@@ -10,7 +10,7 @@ class Goal {
 		int x, y, width, height, lIndex;
 		bool isGoal;
 		void render();
-		void logicGoal(Player player);
+		void logicGoal(Player player, bool allCoins);
 
 		Goal(int x, int y, int width, int height, bool isGoal, int lIndex);
 };

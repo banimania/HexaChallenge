@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Level::Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals, vector<Wall> walls, vector<Background> backgrounds) {
+Level::Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals, vector<Wall> walls, vector<Background> backgrounds, vector<Coin> coins) {
     this->index = index;
 	this->startX = startX;
 	this->startY = startY;
@@ -13,6 +13,7 @@ Level::Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Go
     this->goals = goals;
     this->walls = walls;
     this->backgrounds = backgrounds;
+    this->coins = coins;
 }
 
 void Level::start(Player& player) {
@@ -29,14 +30,24 @@ void Level::logic(Player player) {
         enemy.renderEnemy();
     }
 
+    bool allCoins = true;
+    for (Coin& coin : coins) {
+        if (!coin.obtained) {
+            allCoins = false;
+        }
+        coin.logicCoin(player);
+        coin.render();
+    }
+
     for (Goal& goal : goals) {
-        goal.logicGoal(player);
+        goal.logicGoal(player, allCoins);
         goal.render();
     }
 
     for (Wall wall : walls) {
         wall.render();
     }
+
 }
 
 void Level::renderBackground() {

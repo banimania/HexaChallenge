@@ -4,6 +4,7 @@
 #include "Player.hpp"
 #include "Goal.hpp"
 #include "Background.hpp"
+#include "Coin.hpp"
 
 #include <vector>
 
@@ -20,11 +21,12 @@ class Level {
 		vector<Goal> goals;
 		vector<Wall> walls;
 		vector<Background> backgrounds;
+		vector<Coin> coins;
 		void start(Player& player);
 		void logic(Player player);
 		void renderBackground();
 
-		Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals, vector<Wall> walls, vector<Background> backgrounds);
+		Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals, vector<Wall> walls, vector<Background> backgrounds, vector<Coin> coins);
 };
 
 #endif

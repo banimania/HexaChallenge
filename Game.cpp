@@ -15,7 +15,7 @@ using namespace std;
 
 Player player = Player(100, 100, 1, 4);
 
-Level actualLevel = Level(420, 100, 100, {}, {}, {}, {});
+Level actualLevel = Level(420, 100, 100, {}, {}, {}, {}, {});
 
 int eTime;
 string secondsToTimeFormat(int seconds);
@@ -49,6 +49,9 @@ void Game::restartFromLevel(int levelIndex, bool withDeath) {
 	game.currentLevel = levelIndex;
 	if (withDeath) {
 		player.deathcount++;
+		for (Coin& coin : actualLevel.coins) {
+			coin.obtained = false;
+		}
 	} else {
 		actualLevel = game.levelManager.getLevelFromId(levelIndex);
 	}
