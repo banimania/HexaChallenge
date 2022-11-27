@@ -35,17 +35,17 @@ void Level::logic(Player player) {
         coin.render();
     }
 
+    for (Goal& goal : goals) {
+        goal.logicGoal(player, allCoins);
+        goal.render();
+    }
+
     for (Enemy& enemy : enemies) {
         enemy.logic();
         if (player.isCollidingWithEnemy(enemy.x, enemy.y, enemy.radius)) {
             game.restartFromLevel(index, true);
         }
         enemy.renderEnemy();
-    }
-
-    for (Goal& goal : goals) {
-        goal.logicGoal(player, allCoins);
-        goal.render();
     }
 
     for (Wall wall : walls) {
