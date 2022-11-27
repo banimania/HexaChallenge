@@ -60,11 +60,18 @@ void Player::handleMovement(vector<Wall> walls) {
 	for (Wall wall : walls) {
 		int newx = x + xchange;
 		int newy = y + ychange;
+
 		if (newx + size >= wall.x &&
 			newx <= wall.x + (wall.x2 - wall.x) + size &&
+			y + size >= wall.y &&
+			y <= wall.y + (wall.y2 - wall.y) + size) {
+			isGonnaCollideOnX = true;
+		}
+
+		if (x + size >= wall.x &&
+			x <= wall.x + (wall.x2 - wall.x) + size &&
 			newy + size >= wall.y &&
 			newy <= wall.y + (wall.y2 - wall.y) + size) {
-			isGonnaCollideOnX = true;
 			isGonnaCollideOnY = true;
 		}
 	}
