@@ -8,13 +8,13 @@ class Enemy {
 		float x, y;
 		int radius;
 		int ox, oy, od;
-		float speed, i;
+		float speed, i, oi;
 		int direction, distance;
 		bool reachedEndPoint;
 		void renderEnemy();
 		void logic();
 
-		Enemy(float x, float y, float speed, int radius, int direction, int distance);
+		Enemy(float x, float y, float speed, int radius, int direction, int distance, float i);
 };
 
 #endif

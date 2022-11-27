@@ -34,7 +34,7 @@ bool Game::init(int argc, char** argv) {
 	
 	game.levelManager.initLevelManager();
 
-	game.currentLevel = 1;
+	game.currentLevel = 2;
 	actualLevel = game.levelManager.getLevelFromId(game.currentLevel);
 	actualLevel.start(player);
 
