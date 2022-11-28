@@ -46,6 +46,11 @@ bool Game::init(int argc, char** argv) {
 }
 
 void Game::restartFromLevel(int levelIndex, bool withDeath) {
+	if (levelIndex > game.levelManager.levelList.size()) {
+		glFlush();
+		exit(0);
+	}
+
 	game.currentLevel = levelIndex;
 	if (withDeath) {
 		player.deathcount++;
