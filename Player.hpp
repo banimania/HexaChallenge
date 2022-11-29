@@ -11,12 +11,13 @@ using namespace std;
 
 class Player {
 	public:
-		int x, y, speed, size, deathcount;
+		float x, y, speed, size;
+		int deathcount;
 		void renderPlayer();
-		void handleMovement(vector<Wall> walls);
-		bool isCollidingWithEnemy(int x, int y, int radius);
+		void handleMovement(float dt, vector<Wall> walls);
+		bool isCollidingWithEnemy(float ex, float ey, int radius);
 
-		Player(int x, int y, int speed, float size);
+		Player(float x, float y, float speed, float size);
 };
 
 #endif

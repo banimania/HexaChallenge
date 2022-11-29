@@ -24,7 +24,7 @@ void Level::start(Player& player) {
     }
 }
 
-void Level::logic(Player player) {
+void Level::logic(float dt, Player player) {
 
     bool allCoins = true;
     for (Coin& coin : coins) {
@@ -41,7 +41,7 @@ void Level::logic(Player player) {
     }
 
     for (Enemy& enemy : enemies) {
-        enemy.logic();
+        enemy.logic(dt);
         if (player.isCollidingWithEnemy(enemy.x, enemy.y, enemy.radius)) {
             game.restartFromLevel(index, true);
         }

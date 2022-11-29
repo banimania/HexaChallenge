@@ -12,7 +12,7 @@ class Enemy {
 		int direction, distance;
 		bool reachedEndPoint;
 		void renderEnemy();
-		void logic();
+		void logic(float dt);
 
 		Enemy(float x, float y, float speed, int radius, int direction, int distance, float i);
 };

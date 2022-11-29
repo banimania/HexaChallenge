@@ -6,7 +6,7 @@
 #include <windows.h>
 #include <iostream>
 
-Player::Player(int x, int y, int speed, float size) {
+Player::Player(float x, float y, float speed, float size) {
 	this->x = x;
 	this->y = y;
 	this->speed = speed;
@@ -36,30 +36,30 @@ void Player::renderPlayer() {
 	
 }
 
-void Player::handleMovement(vector<Wall> walls) {
+void Player::handleMovement(float dt, vector<Wall> walls) {
 	bool isGonnaCollideOnX = false;
 	bool isGonnaCollideOnY = false;
-	int xchange = 0;
-	int ychange = 0;
+	float xchange = 0;
+	float ychange = 0;
 	if (GetAsyncKeyState('W')) {
-		ychange -= speed;
+		ychange -= speed * dt;
 	}
 
 	if (GetAsyncKeyState('S')) {
-		ychange += speed;
+		ychange += speed * dt;
 	}
 
 	if (GetAsyncKeyState('A')) {
-		xchange -= speed;
+		xchange -= speed * dt;
 	}
 
 	if (GetAsyncKeyState('D')) {
-		xchange += speed;
+		xchange += speed * dt;
 	}
 
 	for (Wall wall : walls) {
-		int newx = x + xchange;
-		int newy = y + ychange;
+		float newx = x + xchange;
+		float newy = y + ychange;
 
 		if (newx + size >= wall.x &&
 			newx <= wall.x + (wall.x2 - wall.x) + size &&
@@ -85,11 +85,11 @@ void Player::handleMovement(vector<Wall> walls) {
 	}
 }
 
-bool Player::isCollidingWithEnemy(int ex, int ey, int radius) {
+bool Player::isCollidingWithEnemy(float ex, float ey, int radius) {
 
-	float d = sqrt(pow(ex - x, 2) + pow(ey - y, 2));
+	float d = sqrt(pow(int(ex) - x, 2) + pow(int(ey) - y, 2));
 
-	if (d - radius < size) {
+	if (d - radius + 1 < size) {
 		return true;
 	}
 

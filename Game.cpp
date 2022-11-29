@@ -13,12 +13,13 @@
 
 using namespace std;
 
-Player player = Player(100, 100, 1, 3.5f);
+Player player = Player(100, 100, 0.8f, 3.5f);
 
 Level actualLevel = Level(420, 100, 100, {}, {}, {}, {}, {});
 
-int eTime;
 string secondsToTimeFormat(int seconds);
+
+float dt, old_t;
 
 bool Game::init(int argc, char** argv) {
 
@@ -72,20 +73,19 @@ void render() {
 	actualLevel.renderBackground();
 	renderInfo();
 
-	actualLevel.logic(player);
+	actualLevel.logic(dt * 100, player);
 
-    player.handleMovement(actualLevel.walls);
+    player.handleMovement(dt * 100, actualLevel.walls);
     player.renderPlayer();
 
     glFlush();
 }
 
 void idle() {
-
+	int t = glutGet(GLUT_ELAPSED_TIME);
+	dt = (t - old_t) / 1000.0;
+	old_t = t;
 	glutPostRedisplay();
-
-    Sleep(1);
-	eTime++;
 }
 
 void renderInfo() {
@@ -122,7 +122,7 @@ void renderInfo() {
 	glPopMatrix();
 
 	//TIME COUNT
-	string elapsedTime = "Time:" + secondsToTimeFormat(eTime / 60);
+	string elapsedTime = "Time:" + secondsToTimeFormat(glutGet(GLUT_ELAPSED_TIME) / 1000.0f);
 	glPushMatrix();
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glTranslatef(120.0f, 10.0f, 0.0f);

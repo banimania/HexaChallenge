@@ -63,29 +63,29 @@ void Enemy::renderEnemy() {
 	glEnd();*/
 }
 
-void Enemy::logic() {
+void Enemy::logic(float dt) {
 
 	if (direction == 0) {
 		if (ox - distance <= x - speed) {
-			x -= speed;
+			x -= speed * dt;
 		} else {
 			reachedEndPoint = true;
 		}
 	} else if (direction == 1) {
 		if (ox + distance >= x + speed) {
-			x += speed;
+			x += speed * dt;
 		} else {
 			reachedEndPoint = true;
 		}
 	} else if (direction == 2) {
 		if (oy - distance <= y - speed) {
-			y -= speed;
+			y -= speed * dt;
 		} else {
 			reachedEndPoint = true;
 		}
 	} else if (direction == 3) {
 		if (oy + distance >= y + speed) {
-			y += speed;
+			y += speed * dt;
 		} else {
 			reachedEndPoint = true;
 		}
@@ -95,14 +95,14 @@ void Enemy::logic() {
 		}
 		x = ox + distance * cos(i);
 		y = oy +  distance * sin(i);
-		i += speed;
+		i += speed * dt;
 	} else if (direction == 5) { //CIRCULAR
 		if (i < oi-360) {
 			i = oi;
 		}
 		x = ox + distance * cos(i);
 		y = oy + distance * sin(i);
-		i -= speed;
+		i -= speed * dt;
 	}
 
 	if (reachedEndPoint) {
