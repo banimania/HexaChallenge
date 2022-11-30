@@ -55,6 +55,15 @@ void Level::logic(float dt, Player player) {
 }
 
 void Level::renderBackground() {
+    renderSquaredBg();
+
+    //render backgrounds
+    for (Background background : backgrounds) {
+        background.render();
+    }
+}
+
+void Level::renderSquaredBg() {
     int sq_size = 10;
     int count = 0;
     for (int i = -100; i < 230; i += sq_size) {
@@ -69,10 +78,5 @@ void Level::renderBackground() {
             glEnd();
 
         }
-    }
-
-    //render backgrounds
-    for (Background background : backgrounds) {
-        background.render();
     }
 }

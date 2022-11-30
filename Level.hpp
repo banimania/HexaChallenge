@@ -25,6 +25,7 @@ class Level {
 		void start(Player& player);
 		void logic(float dt, Player player);
 		void renderBackground();
+		void renderSquaredBg();
 
 		Level(int index, int startX, int startY, vector<Enemy> enemies, vector<Goal> goals, vector<Wall> walls, vector<Background> backgrounds, vector<Coin> coins);
 };
