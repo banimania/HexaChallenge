@@ -21,6 +21,8 @@ string secondsToTimeFormat(int seconds);
 
 float dt, old_t;
 
+float debugTime;
+
 bool Game::init(int argc, char** argv) {
 
 	glutInit(&argc, argv);
@@ -63,6 +65,11 @@ void Game::restartFromLevel(int levelIndex, bool withDeath) {
 }
 
 void render() {
+	if (GetAsyncKeyState('R')) {
+		game.restartFromLevel(1, false);
+		player.deathcount = 0;
+		debugTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+	}
     glClearColor(0.45f, 0.45f, 0.45f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -122,7 +129,7 @@ void renderInfo() {
 	glPopMatrix();
 
 	//TIME COUNT
-	string elapsedTime = "Time:" + secondsToTimeFormat(glutGet(GLUT_ELAPSED_TIME) / 1000.0f);
+	string elapsedTime = "Time:" + secondsToTimeFormat(glutGet(GLUT_ELAPSED_TIME) / 1000.0f - debugTime);
 	glPushMatrix();
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glTranslatef(120.0f, 10.0f, 0.0f);
