@@ -73,7 +73,7 @@ void render() {
 	actualLevel.renderBackground();
 	renderInfo();
 
-	actualLevel.logic(dt * 100, player);
+	actualLevel.logic(dt * 70, player);
 
     player.handleMovement(dt * 100, actualLevel.walls);
     player.renderPlayer();
